@@ -10,11 +10,13 @@ import "./controllers/reservations"
 
 // import providers
 import { IEaterProvider } from "./models/IEaterProvider";
-import { EaterProvider } from "./providers/eaterProvider";
+import { EaterProvider } from "./providers/dbProviders/eaterProvider";
 import { IReservationProvider } from "./models/IReservationProvider";
-import { ReservationProvider } from "./providers/reservationProvider";
+import { ReservationProvider } from "./providers/dbProviders/reservationProvider";
 import { IRestaurantProvider } from "./models/IRestaurantProvider";
-import { RestaurantProvider } from "./providers/restaurantProvider";
+import { RestaurantProvider } from "./providers/dbProviders/restaurantProvider";
+import { IReservationBuilder } from "./models/IReservationBuilder";
+import { ReservationBuilder } from "./providers/reservationBuilder";
 
 export const buildContainer = async ():Promise<Container> => {
     const container = new Container();
@@ -28,6 +30,9 @@ export const buildContainer = async ():Promise<Container> => {
     container.bind<IReservationProvider>(TYPES.IReservationProvider).to(ReservationProvider);
     container.bind<IRestaurantProvider>(TYPES.IRestaurantProvider).to(RestaurantProvider);
 
+    // this is the base provider responsible for most of the logic we will be using
+    // It depebds on the DB providers above therefore we need to declare it after them
+    container.bind<IReservationBuilder>(TYPES.IReservationBuilder).to(ReservationBuilder)
 
     return container;
 }

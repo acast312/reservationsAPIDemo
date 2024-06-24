@@ -1,6 +1,6 @@
 import { injectable } from "inversify";
-import { IReservationProvider } from "../models/IReservationProvider";
-import { IReservation, Reservation } from "../models/schemas/ReservationSchemas";
+import { IReservationProvider } from "../../models/IReservationProvider";
+import { IReservation, Reservation } from "../../models/schemas/ReservationSchemas";
 
 @injectable()
 export class ReservationProvider implements IReservationProvider {

@@ -1,6 +1,6 @@
 import { injectable } from "inversify";
-import { IReservation, IRestaurant, Restaurant } from "../models/schemas/ReservationSchemas";
-import { IRestaurantProvider } from "../models/IRestaurantProvider";
+import { IReservation, IRestaurant, Restaurant } from "../../models/schemas/ReservationSchemas";
+import { IRestaurantProvider } from "../../models/IRestaurantProvider";
 
 @injectable()
 export class RestaurantProvider implements IRestaurantProvider {
