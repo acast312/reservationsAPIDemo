@@ -10,6 +10,14 @@ const eaterSchema = new Schema({
     dietaryRestrictions: Array<String>
 })
 
+export interface IReservation {
+    startTime: Date,
+    endTime: Date,
+    eaters: string[],
+    numEaters: number,
+    restaurant: string
+}
+
 const reservationSchema = new Schema({
     startTime: Date,
     endTime: Date,
@@ -18,6 +26,14 @@ const reservationSchema = new Schema({
     restaurant: String,
     
 })
+
+export interface IRestaurant {
+    name: string, 
+    twoTop: number,
+    fourTop: number,
+    sixTop: number,
+    endorsements: string[]
+}
 
 const restaurantSchema = new Schema({
     name: String,
@@ -28,5 +44,5 @@ const restaurantSchema = new Schema({
 })
 
 export const Eater = model<IEater>('Eater', eaterSchema);
-export const Reservation = model('Reservation', reservationSchema);
-export const Restaurant = model('Restauran', restaurantSchema);
+export const Reservation = model<IReservation>('Reservation', reservationSchema);
+export const Restaurant = model<IRestaurant>('Restauran', restaurantSchema);
