@@ -1,5 +1,10 @@
 import { Schema, model } from "mongoose";
 
+export interface IEater {
+    name: string,
+    dietaryRestrictions: string[]
+}
+
 const eaterSchema = new Schema({
     name: String,
     dietaryRestrictions: Array<String>
@@ -22,6 +27,6 @@ const restaurantSchema = new Schema({
     endorsements: Array<String>
 })
 
-export const Eater = model('Eater', eaterSchema);
+export const Eater = model<IEater>('Eater', eaterSchema);
 export const Reservation = model('Reservation', reservationSchema);
 export const Restaurant = model('Restauran', restaurantSchema);

@@ -1,6 +1,5 @@
 import {Request, Response, NextFunction} from 'express';
 import { interfaces, httpGet, controller } from 'inversify-express-utils';
-import { injectable } from 'inversify';
 
 @controller('/health')
 export class HealthController implements interfaces.Controller {
