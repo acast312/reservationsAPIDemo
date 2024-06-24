@@ -16,7 +16,7 @@ export class EaterProvider implements IEaterProvider {
     }
 
 
-    public getAll = async (): Promise<IEater[]> => {
+    async getAll(): Promise<IEater[]> {
         const eaters = await Eater.find()
         return eaters
     }
