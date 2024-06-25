@@ -69,7 +69,8 @@ export class ReservationBuilder implements IReservationBuilder {
         // Check if any of our users have an overlapping reservation
         const overlappingReservations = await Reservation.find({
             eaters: {$in: eaters},
-            endTime: {$gte: time},
+            startTime: {$lte: time},
+            endTime: {$gte: endTime} 
         })
 
         if(overlappingReservations.length > 0) { 
@@ -77,7 +78,7 @@ export class ReservationBuilder implements IReservationBuilder {
         } 
         
         
-        const existingReservations: IReservation[] = await  Reservation.find({
+        const existingReservations: IReservation[] = await Reservation.find({
             restaurant: restaurantName,
             endTime: {$lte: endTime},
         })
@@ -124,14 +125,17 @@ export class ReservationBuilder implements IReservationBuilder {
         const endTime = new Date(time)
         endTime.setHours(endTime.getHours() + 2)
         
-        const knownEaters = await this._eaterProvider.getEatersByName(eaters)
+        const knownEaters = await this._eaterProvider.getEatersById(eaters)
         
         // Check if any of our users have an overlapping reservation
         const overlappingReservations = await Reservation.find({
-            eaters: {$in: knownEaters.reduce((eaters: string[], eater) => [...eaters, eater.name], [])},
-            startTime: {$lt: endTime},
+            eaters: {$in: eaters},
+            startTime: {$lte: time},
+            endTime: {$gte: endTime} 
         })
 
+
+        console.log(overlappingReservations)
         if(overlappingReservations.length > 0) { return []} // return empty list of available restaurants
         
         const diateryRestrictions = knownEaters.reduce((restrictions: string[], eater) => {

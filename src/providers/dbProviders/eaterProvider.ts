@@ -15,7 +15,10 @@ export class EaterProvider implements IEaterProvider {
         this._dbService = dbService;
     }
 
-    async getEatersByName(eaters: string[]): Promise<IEater[]> {
+    async getEatersById(eaters: string[]): Promise<IEater[]> {
+        return await Eater.find({
+            '_id': { $in: eaters}
+        })
         return await Eater.find({
             name: { $in: eaters }
         })
