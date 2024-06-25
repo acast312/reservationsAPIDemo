@@ -5,11 +5,11 @@
 
 __Start the DB__
 
-> docker composer up // docker-compose up for older versions of docker
+> docker compose up // docker-compose up for older versions of docker
 
 seed the db
 
-> npm run seedDB
+> npm run seedDb
 
 __Start the API__
 
