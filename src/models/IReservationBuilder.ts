@@ -1,4 +1,4 @@
-import { ITableOccupancy } from "../providers/reservationBuilder";
+import { ITableOccupancy } from "./ITableOccupancy";
 import { IReservation, IRestaurant } from "./schemas/ReservationSchemas";
 
 export interface IReservationBuilder {
