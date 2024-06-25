@@ -15,7 +15,8 @@ export interface IReservation {
     endTime: Date,
     eaters: string[],
     numEaters: number,
-    restaurant: string
+    restaurant: string,
+    table: string // 'twoTop' 'fourTop' 'sixTop'
 }
 
 const reservationSchema = new Schema({
@@ -24,7 +25,7 @@ const reservationSchema = new Schema({
     eaters: Array<String>,
     numEaters: Number,
     restaurant: String,
-    
+    table: String // 'twoTop' 'fourTop' 'sixTop'
 })
 
 export interface IRestaurant {

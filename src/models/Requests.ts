@@ -7,3 +7,7 @@ export interface IRestaurantSearchRequest {
 export interface IRestaurantSearchResponse {
     restaurants: string[]
 }
+
+export interface IReservationCreateRequest extends IRestaurantSearchRequest {
+    restaurant: string
+}

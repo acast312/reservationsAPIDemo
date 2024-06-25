@@ -24,11 +24,11 @@ export class RestaurantController implements interfaces.Controller {
         return res.json(await this._restaurantProvider.getAll())
     }
 
-    @httpPost("/")
+    @httpPost("/available")
     public async getRestaurant(req: Request, res: Response, next: NextFunction) {
         const data: IRestaurantSearchRequest = req.body
-        console.log(data)
-        return res.json(await this._reservationBuilder.getAvailableRestaurants(data.time, data.eaters))
+
+        return res.json(await this._reservationBuilder.getAvailableRestaurantsNames(data.time, data.eaters))
     }
 
 }
