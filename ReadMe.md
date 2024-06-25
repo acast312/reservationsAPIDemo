@@ -13,6 +13,8 @@ seed the db
 
 __Start the API__
 
+> npm install
+
 development: 
 >npm run dev //runs using nodemon for hot-reloads
 
