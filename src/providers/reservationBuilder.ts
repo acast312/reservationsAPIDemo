@@ -6,12 +6,7 @@ import { TYPES } from "../models/types";
 import { IReservationProvider } from "../models/IReservationProvider";
 import { IEater, IReservation, IRestaurant, Reservation, Restaurant } from "../models/schemas/ReservationSchemas";
 import { FilterQuery } from "mongoose";
-
-interface ITableOccupancy {
-    twoTop: number,
-    fourTop: number,
-    sixTop: number
-}
+import { ITableOccupancy } from "../models/ITableOccupancy";
 
 @injectable()
 export class ReservationBuilder implements IReservationBuilder {
@@ -66,6 +61,7 @@ export class ReservationBuilder implements IReservationBuilder {
 
         return newReservation;
     }
+    
     createReservation = async (time: Date, eaters: string[], restaurantName: string): Promise<IReservation> => {
         const endTime = new Date(time)
         endTime.setHours(endTime.getHours() + 2)
@@ -187,17 +183,9 @@ export class ReservationBuilder implements IReservationBuilder {
         }
 
         reservations.forEach( reservation => {
-            switch(reservation.table) {
-                case "sixTop":
-                    occupancy.sixTop += 1
-                case "fourTop":
-                    occupancy.fourTop += 1
-                case "twoTop":
-                    occupancy.twoTop += 1
-            }
+            occupancy[reservation.table as keyof ITableOccupancy] += 1
 
         })
-        
         return occupancy
     };
 
